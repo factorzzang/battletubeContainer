@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  # fastApi video Container (convert from flaskApiVideo)
+  videoapi:
+    user: "1000:1000"
+    image: fastapi-video:1.0
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./logs:/fastApiVideo/logs
+      - /mnt/videos/data:/mnt/videos/data
+      - /mnt/videos/images:/mnt/videos/images
+      - /mnt/videos/comment:/mnt/videos/comment
+    networks:
+      default_bridge:
+        ipv4_address: 172.26.0.20
+  # redis-server
+  redis:
+    image: ems-redis:1.0
+    ports:
+      - "6379:6379"
+    networks:
+      default_bridge:
+        ipv4_address: 172.26.0.40
+  # encodingManager with ffmpeg
+  ems:
+    image: ems-ffmpeg:1.0
+    user: "1000:1000"
+    ports:
+      - "1515:1515"
+      - "50010:8000"
+    volumes:
+      - /mnt/videos:/mnt/videos
+      - ./configs:/ems/configs
+      - ./logs:/ems/logs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+    networks:
+      default_bridge:
+        ipv4_address: 172.26.0.50
+networks:
+  default_bridge:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/16
