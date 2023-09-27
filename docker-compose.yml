@@ -7,10 +7,9 @@ services:
     ports:
       - "5000:8000"
     volumes:
+      - ./fastApiVideoContainer/fastApiVideo:/fastapi
       - ./logs:/fastApiVideo/logs
-      - /mnt/videos/data:/mnt/videos/data
-      - /mnt/videos/images:/mnt/videos/images
-      - /mnt/videos/comment:/mnt/videos/comment
+      - /mnt/videos:/mnt/videos
     networks:
       default_bridge:
         ipv4_address: 172.26.0.20
@@ -30,6 +29,7 @@ services:
       - "1515:1515"
       - "50010:8000"
     volumes:
+      - ./emsContainer/encodingManager:/ems
       - /mnt/videos:/mnt/videos
       - ./configs:/ems/configs
       - ./logs:/ems/logs
