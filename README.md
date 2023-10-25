@@ -20,7 +20,8 @@
   - Encoder 상태저장
   - 사용자 비밀번호 찾기시 인증번호 및 유효시간 저장
 </pre>
-## videoapi : fastApiVideoContainer
+## videoapi : ~~fastApiVideoContainer~~ (Deprecated)
 <pre>
-  onairApi와 통합후 삭제 예정
+  <s>onairApi와 통합후 삭제 예정</s>
+  fastapi에 통합됨
 </pre>
