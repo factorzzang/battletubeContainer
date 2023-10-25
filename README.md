@@ -8,3 +8,6 @@
 ## ems : encoder management service
 ## redis : redis server
 ## videoapi : fastApiVideoContainer
+<pre>
+  onairApi와 통합후 삭제 예정
+</pre>
