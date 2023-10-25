@@ -5,6 +5,11 @@
   make build : ems, redis, videoapi docker 이미지 생성
   make all : 최신 소스 업데이트 후 이미지 생성
 </pre>
+## fastapi : (구) onairApi
+<pre>
+  onairapi와 videoapi를 통합
+</pre>
+
 ## ems : encoder management service
 <pre>
   video encoding을 위한 api 및 ffmpeg 어플리케이션 서비스
