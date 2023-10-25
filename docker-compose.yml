@@ -12,7 +12,7 @@ services:
   #     - "5000:5000"
   #     - "8888:8888"
   #     - "9999:9999"
-  battletubeapi:
+  api:
     user: "1000:1000"
     image: fastapi-battletube:1.0
     ports:
@@ -25,19 +25,19 @@ services:
     networks:
       default_bridge:
         ipv4_address: 172.26.0.10
-  videoapi:
-    user: "1000:1000"
-    image: fastapi-video:1.01
-    ports:
-      - "51000:8000"
-    volumes:
-      - ./fastApiVideoContainer/fastApiVideo:/fastapi
-      - ./logs:/fastApiVideo/logs
-      - /mnt/videos:/mnt/videos
-      - /mnt/trash:/mnt/trash
-    networks:
-      default_bridge:
-        ipv4_address: 172.26.0.20
+  # videoapi:
+  #   user: "1000:1000"
+  #   image: fastapi-video:1.01
+  #   ports:
+  #     - "51000:8000"
+  #   volumes:
+  #     - ./fastApiVideoContainer/fastApiVideo:/fastapi
+  #     - ./logs:/fastApiVideo/logs
+  #     - /mnt/videos:/mnt/videos
+  #     - /mnt/trash:/mnt/trash
+  #   networks:
+  #     default_bridge:
+  #       ipv4_address: 172.26.0.20
   # redis-server
   redis:
     image: ems-redis:1.01

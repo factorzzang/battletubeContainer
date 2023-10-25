@@ -1,4 +1,4 @@
-.PHONY: init update build clear all
+.PHONY: init update build clean all
 
 init:
 	@echo "init directory"
@@ -10,14 +10,10 @@ init:
 	mkdir -p logs;\
 	else echo "logs already exists";\
 	fi
-	@echo "git clone ems, redis, videoapi"
+	@echo "git clone ems, redis"
 	@if [ ! -d emsContainer ]; then	\
 	git clone git@github.com:factorzzang/emsContainer.git;\
 	else echo "emsContainer already exists";\
-	fi
-	@if [ ! -d fastApiVideoContainer ]; then \
-	git clone git@github.com:factorzzang/fastApiVideoContainer.git;\
-	else echo "fastApiVideoContainer already exists";\
 	fi
 	@if [ ! -d redisContainer ]; then \
 	git clone git@github.com:factorzzang/redisContainer.git; \
@@ -28,11 +24,11 @@ init:
 	cd fastApiContainer && git clone git@github.com:yarang/fastApiOnairTest.git; \
 	else echo "fastApiOnairTest already exists";\
 	fi
+	@echo "init directory complete"
 
 update:
 	@echo "Updating Git..."
 	cd emsContainer && git pull origin master
-	cd fastApiVideoContainer && git pull origin master
 	cd redisContainer && git pull origin master
 	cd fastApiContainer && cd fastApiOnairTest && git pull origin main
 	@echo "Git updated successfully."
@@ -40,18 +36,20 @@ update:
 build:
 	@echo "build docker image"
 	cd emsContainer && make build
-	cd fastApiVideoContainer && make build
 	cd redisContainer && make build
 	cd fastApiContainer && make build
 
-clear:
-	@echo "clear container directory & docker images"
-	rm -r configs
-	rm -r logs
-	rm -r emsContainer
-	rm -r redisContainer
-	rm -r fastApiVideoContainer
-	rm -r fastApiContainer/fastApiOnairTest
+clean:
+	@echo "clean container directory & docker images"
+	@if [ -d configs ]; then rm -r configs;fi
+	@if [ -d logs ]; then	rm -r logs;fi
+	@if [ -d emsContainer ]; then	rm -r emsContainer;fi
+	@if [ -d redisContainer ]; then rm -r redisContainer;fi
+	@if [ -d fastApiContainer/fastApiOnairTest ]; then \
+	rm -r fastApiContainer/fastApiOnairTest;\
+	fi
+	@echo "clean complete"
+
 
 all: update build
 
