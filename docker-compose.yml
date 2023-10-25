@@ -1,21 +1,46 @@
 version: '3.8'
 services:
-  # fastApi video Container (convert from flaskApiVideo)
+  # nginx:
+  #   user: "1000:1000"
+  #   image: nginx-tunestar:1.0
+  #   volumes:
+  #     - /battletube:/battletube
+  #     - ./logs/nginx:/var/log/nginx
+  #     - /mnt/videos:/mnt/videos
+  #   ports:
+  #     - "80:80"
+  #     - "5000:5000"
+  #     - "8888:8888"
+  #     - "9999:9999"
+  battletubeapi:
+    user: "1000:1000"
+    image: fastapi-battletube:1.0
+    ports:
+      - "50000:8000"
+    volumes:
+      - ./fastApiContainer/fastApiOnairTest:/fastapi
+      - ./logs:/tunestar_app/logs
+      - /mnt/videos:/mnt/videos
+      - /mnt/trash:/mnt/trash
+    networks:
+      default_bridge:
+        ipv4_address: 172.26.0.10
   videoapi:
     user: "1000:1000"
-    image: fastapi-video:1.0
+    image: fastapi-video:1.01
     ports:
-      - "5000:8000"
+      - "51000:8000"
     volumes:
       - ./fastApiVideoContainer/fastApiVideo:/fastapi
       - ./logs:/fastApiVideo/logs
       - /mnt/videos:/mnt/videos
+      - /mnt/trash:/mnt/trash
     networks:
       default_bridge:
         ipv4_address: 172.26.0.20
   # redis-server
   redis:
-    image: ems-redis:1.0
+    image: ems-redis:1.01
     ports:
       - "6379:6379"
     networks:
@@ -23,16 +48,15 @@ services:
         ipv4_address: 172.26.0.40
   # encodingManager with ffmpeg
   ems:
-    image: ems-ffmpeg:1.0
+    image: ems-ffmpeg:1.02
     user: "1000:1000"
     ports:
-      - "1515:1515"
-      - "50010:8000"
+      - "15000:8000"
     volumes:
       - ./emsContainer/encodingManager:/ems
-      - /mnt/videos:/mnt/videos
       - ./configs:/ems/configs
       - ./logs:/ems/logs
+      - /mnt/videos:/mnt/videos
     deploy:
       resources:
         reservations:

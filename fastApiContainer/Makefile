@@ -1,12 +1,11 @@
 # Makefile 
 
 # Docker 이미지 이름 및 버전
-IMAGE_NAME := fastapi-onair
+IMAGE_NAME := fastapi-battletube
 IMAGE_VERSION := 1.0
 
 # Docker 빌드 명령어
 DOCKER_BUILD := docker build -t $(IMAGE_NAME):$(IMAGE_VERSION) .
-# DOCKER_BUILD := docker build -t $(IMAGE_NAME) .
 
 # Docker 이미지 빌드
 build:

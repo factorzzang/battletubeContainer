@@ -1,4 +1,4 @@
-.PHONY: init update build all
+.PHONY: init update build clear all
 
 init:
 	@echo "init directory"
@@ -24,8 +24,8 @@ init:
 	else echo "redisContainer already exists";\
 	fi
 	@echo "git clone onairApi"
-	@if [ ! -d onairApiContainer/fastApiOnairTest ]; then \
-	cd onairApiContainer && git clone git@github.com:yarang/fastApiOnairTest.git; \
+	@if [ ! -d fastApiContainer/fastApiOnairTest ]; then \
+	cd fastApiContainer && git clone git@github.com:yarang/fastApiOnairTest.git; \
 	else echo "fastApiOnairTest already exists";\
 	fi
 
@@ -34,7 +34,7 @@ update:
 	cd emsContainer && git pull origin master
 	cd fastApiVideoContainer && git pull origin master
 	cd redisContainer && git pull origin master
-	cd onairApiContainer && cd fastApiOnairTest && git pull origin main
+	cd fastApiContainer && cd fastApiOnairTest && git pull origin main
 	@echo "Git updated successfully."
 
 build:
@@ -42,6 +42,16 @@ build:
 	cd emsContainer && make build
 	cd fastApiVideoContainer && make build
 	cd redisContainer && make build
+	cd fastApiContainer && make build
+
+clear:
+	@echo "clear container directory & docker images"
+	rm -r configs
+	rm -r logs
+	rm -r emsContainer
+	rm -r redisContainer
+	rm -r fastApiVideoContainer
+	rm -r fastApiContainer/fastApiOnairTest
 
 all: update build
 
