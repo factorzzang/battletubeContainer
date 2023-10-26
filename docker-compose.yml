@@ -19,7 +19,7 @@ services:
       - "50000:8000"
     volumes:
       - ./fastApiContainer/fastApiOnairTest:/fastapi
-      - ./logs:/tunestar_app/logs
+      - ./logs:/fastapi/logs
       - /mnt/videos:/mnt/videos
       - /mnt/trash:/mnt/trash
     networks:
