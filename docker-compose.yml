@@ -25,19 +25,6 @@ services:
     networks:
       default_bridge:
         ipv4_address: 172.26.0.10
-  # videoapi:
-  #   user: "1000:1000"
-  #   image: fastapi-video:1.01
-  #   ports:
-  #     - "51000:8000"
-  #   volumes:
-  #     - ./fastApiVideoContainer/fastApiVideo:/fastapi
-  #     - ./logs:/fastApiVideo/logs
-  #     - /mnt/videos:/mnt/videos
-  #     - /mnt/trash:/mnt/trash
-  #   networks:
-  #     default_bridge:
-  #       ipv4_address: 172.26.0.20
   # redis-server
   redis:
     image: ems-redis:1.01
@@ -46,7 +33,7 @@ services:
     networks:
       default_bridge:
         ipv4_address: 172.26.0.40
-  # encodingManager with ffmpeg
+  # encodingManagementService with ffmpeg
   ems:
     image: ems-ffmpeg:1.02
     user: "1000:1000"
