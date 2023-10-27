@@ -7,7 +7,7 @@ COPY requirements.txt /fastapi/requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install pyyaml uvicorn requests opencv-python-headless
-RUN pip install python-multipart httpx
+RUN pip install python-multipart httpx redis
 
 # COPY ./fastApiOnairTest /fastapi/
 

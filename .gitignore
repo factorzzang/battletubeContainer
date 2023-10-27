@@ -1,6 +1,6 @@
 emsContainer
 redisContainer
-fastApiContainer/fastApiOnairTest
+apiContainer/fastApiOnairTest
 fastApiVideoContainer
 logs
 configs

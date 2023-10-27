@@ -18,13 +18,13 @@ services:
     ports:
       - "50000:8000"
     volumes:
-      - ./fastApiContainer/fastApiOnairTest:/fastapi
+      - ./apiContainer/fastApiOnairTest:/fastapi
       - ./logs:/fastapi/logs
       - /mnt/videos:/mnt/videos
       - /mnt/trash:/mnt/trash
     networks:
       default_bridge:
-        ipv4_address: 172.26.0.10
+        ipv4_address: 172.26.0.30
   # redis-server
   redis:
     image: ems-redis:1.01
@@ -35,7 +35,7 @@ services:
         ipv4_address: 172.26.0.40
   # encodingManagementService with ffmpeg
   ems:
-    image: ems-ffmpeg:1.02
+    image: ems-ffmpeg:1.03
     user: "1000:1000"
     ports:
       - "15000:8000"
