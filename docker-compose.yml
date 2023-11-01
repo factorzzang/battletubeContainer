@@ -13,7 +13,9 @@ services:
   #     - "8888:8888"
   #     - "9999:9999"
   api:
-    user: "1000:1000"
+    user: "${UID}:${GID}"
+    env_file:
+      - .env
     image: fastapi-battletube:1.0
     ports:
       - "50000:8000"
@@ -36,7 +38,9 @@ services:
   # encodingManagementService with ffmpeg
   ems:
     image: ems-ffmpeg:1.03
-    user: "1000:1000"
+    user: "${UID}:${GID}"
+    env_file:
+      - .env
     ports:
       - "15000:8000"
     volumes:
