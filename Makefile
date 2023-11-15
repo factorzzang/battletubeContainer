@@ -1,4 +1,4 @@
-.PHONY: init update build clean all
+.PHONY: init init_tunestar update build clean all
 
 init:
 	@echo "init directory"

@@ -4,3 +4,5 @@ apiContainer/fastApiOnairTest
 fastApiVideoContainer
 logs
 configs
+nginxContainer
+.env
