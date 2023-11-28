@@ -5,4 +5,5 @@ fastApiVideoContainer
 logs
 configs
 nginxContainer
+fileData
 .env
