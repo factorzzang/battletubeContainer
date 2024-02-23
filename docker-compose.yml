@@ -18,7 +18,7 @@ services:
       - .env
     image: fastapi-battletube:1.0
     ports:
-      - "50000:8000"
+      - "18000:8000"
     volumes:
       - ./apiContainer/fastApiOnairTest:/fastapi
       - ./logs:/fastapi/logs
